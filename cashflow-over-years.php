@@ -25,11 +25,15 @@ function calc_cashflow_years_dollars(){
       setlocale(LC_MONETARY,"en_US");
       $currYear = 1;
       $currCash = $startingSavings;
+      $valueEachHouse = $cashDownPerHouse * 4;
+
       echo "STARTING Cash: <strong>" . money_format("%(.0n",$currCash) . "</strong></br>"; 
       echo "STARTING Rental Property Count: <strong>" . $houseCount . "</strong></br>";
       echo "NON-REAL ESTATE Savings Per Year: <strong>" . money_format("%(.0n",$savingPerYear) . "</strong></br>";
       echo "Assumed Cashflow Per House: <strong>" . money_format("%(.0n",$cashflowPerHouse) . "</strong></br>";
-      echo "Cash Down Needed Per House: <strong>" . money_format("%(.0n",$cashDownPerHouse) . "</strong></br></br>";
+      echo "Cash Down Needed Per House: <strong>" . money_format("%(.0n",$cashDownPerHouse) . "</strong></br>";
+      echo "Approximate value/cost per house: <strong>" . money_format("%(.0n",$valueEachHouse) . "</strong></br></br>";
+
       $annualRealEstateCashFlow = 0;
       while($currYear <= $numYears){
         $annualRealEstateCashFlow = $cashflowPerHouse * $houseCount;
@@ -42,6 +46,7 @@ function calc_cashflow_years_dollars(){
         }
         echo "Cash at end of year $currYear: <strong>" . money_format("%(.0n",$currCash) . "</strong></br>"; 
         echo "House Count at end of year $currYear: <strong>" . $houseCount . "</strong></br>";
+        echo "Total RE Portfolio Value at end of year $currYear: <strong>" . money_format("%(.0n",($valueEachHouse * 0.75 * $houseCount)) . "</strong></br>";
         echo "Annual Real Estate Cash Flow at end of year $currYear: <strong>" . money_format("%(.0n",$annualRealEstateCashFlow) . "</strong></br></br>";
         $currYear++;
       }
@@ -66,7 +71,7 @@ function calc_cashflow_years_dollars(){
       Starting Rental Property Count: <input type=\"text\" name=\"houseCount\"><br>
 
       Number of Years to Calculate Off Of: <input type=\"text\" name=\"numYears\"><br>
-      
+
       Cash Down Per House: <input type=\"text\" name=\"cashDownPerHouse\"><br>
 
 
